@@ -9,14 +9,22 @@ local KongSplunkHandler = {}
 KongSplunkHandler.PRIORITY = 12
 KongSplunkHandler.VERSION = "1.0.0"
 
-local function splunk_event(config, ngx)
+local function splunk_event(config, ngx, ctx)
+  local severity = "INFO"
+  local message = "Kong Splunk Handler"
+
+  if tonumber(ngx.var.status) >= 400 then
+    severity = "ERROR"
+    message = ctx.shared.errmsg
+  end
+
   return {
     index = config.splunk_index,
     sourcetype = config.splunk_sourcetype,
     event = {
-      severity = "INFO",
+      severity = severity,
       logger = "Kong Splunk Handler",
-      message = "KongTestLog",
+      message = message,
       url = ngx.var.request_uri,
       method = ngx.var.request_method,
       client_ip = ngx.var.remote_addr,
@@ -104,7 +112,7 @@ function KongSplunkHandler:log(config)
     queue_config,
     send_request,
     config,
-    splunk_event(config, ngx)
+    splunk_event(config, ngx, kong.ctx)
   )
   if not ok then
     kong.log.err("Error setting up queue ", err)
