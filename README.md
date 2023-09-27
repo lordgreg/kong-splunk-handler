@@ -7,6 +7,14 @@ This is a Kong 3.x Splunk plugin, which enables you to send specific information
 
 Splunk specifics, such as `index` and `source type` **are** supported.
 
+## Parameters
+
+| Field name | Required | Default value | Description |
+| - | - | - | - |
+| splunk_endpoint   | Yes | - | Endpoint to your Splunk
+| splunk_token      | Yes | - | Access Token
+| splunk_index      | Yes | - | Index for Splunk
+| splunk_sourcetype | No  | `AccessLog` | Source type, if different
 
 ## How to use
 
