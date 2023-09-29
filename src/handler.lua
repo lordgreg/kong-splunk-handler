@@ -100,10 +100,10 @@ function KongSplunkHandler:log(config)
     name = fmt("%s:%s:%s", config.splunk_endpoint, config.splunk_index, config.splunk_sourcetype), -- name of the queue (required)
     log_tag = "kong-splunk-handler plugin " .. kong.plugin.get_id(),                                         -- tag string to identify plugin or application area in logs
     max_batch_size = 10,                                                                           -- maximum number of entries in one batch (default 1)
-    max_coalescing_delay = 1,                                                                      -- maximum number of seconds after first entry before a batch is sent
+    max_coalescing_delay = 10,                                                                      -- maximum number of seconds after first entry before a batch is sent
     max_entries = 10,                                                                              -- maximum number of entries on the queue (default 10000)
     -- max_bytes = 100,            -- maximum number of bytes on the queue (default nil)
-    initial_retry_delay = 0.01,                                                                    -- initial delay when retrying a failed batch, doubled for each subsequent retry
+    initial_retry_delay = 1,                                                                    -- initial delay when retrying a failed batch, doubled for each subsequent retry
     max_retry_time = 60,                                                                           -- maximum number of seconds before a failed batch is dropped
     max_retry_delay = 60,                                                                          -- maximum delay between send attempts, caps exponential retry
   }
