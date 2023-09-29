@@ -8,7 +8,7 @@ source = {
 description = {
     summary = "Kong Plugin that Sends Logs to Splunk",
     detailed = [[
-        batman.
+        See README.md for more details.
     ]],
     homepage = "https://https://github.com/lordgreg/kong-splunk-handler",
     license = "Apache 2.0"
