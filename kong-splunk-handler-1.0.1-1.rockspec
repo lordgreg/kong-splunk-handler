@@ -1,5 +1,5 @@
 package = "kong-splunk-handler"
-version = "1.0.0-1"
+version = "1.0.1-1"
 source = {
     url = "git://https://github.com/lordgreg/kong-splunk-handler",
     tag = "master",
